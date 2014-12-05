@@ -4,6 +4,7 @@ toxscreen
 toxscreen is currently just an idea. Things may change. Things
 may never get done or started. Who knows.
 
+See [STRUCTURE.md] for packet structure ideas.
 
 Tools to use
 ------------
@@ -52,3 +53,5 @@ that tox doesn't itself support.
  Perm     | 162  | Lossless    | Send permission request/info
  Key      | 170  | Lossless    | Send a keyboard key event (key code?)
  Mouse    | 171  | Lossless    | Send a mouseclick event (x/y position, key code?)
+
+[STRUCTURE.md]:https://github.com/saneki/toxscreen/blob/master/STRUCTURE.md
