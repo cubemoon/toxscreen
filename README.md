@@ -46,12 +46,13 @@ handling and sending to deal with custom packets for events
 that tox doesn't itself support.
 
 --------------------------------------------------------------------------------------------
- Name     | Id   | Reliability | Description
+ Name      | Id   | Reliability | Description
 --------------------------------------------------------------------------------------------
- Info     | 160  | Lossless    | Check for toxscreen support of another client
- Connect  | 161  | Lossless    | Request invitation to be a guest or host for screen sharing
- Perm     | 162  | Lossless    | Send permission request/info
- Key      | 170  | Lossless    | Send a keyboard key event (key code?)
- Mouse    | 171  | Lossless    | Send a mouseclick event (x/y position, key code?)
+ Info      | 160  | Lossless    | Check for toxscreen support of another client
+ Connect   | 161  | Lossless    | Request invitation to be a guest or host for screen sharing
+ Perm      | 162  | Lossless    | Send permission request/info
+ Key       | 170  | Lossless    | Send a keyboard key event (key code?)
+ Mouse     | 171  | Lossless    | Send a mouseclick event (x/y position, key code?)
+ Clipboard | 172  | Lossless    | Send a clipboard event (copy/paste data, variable length)
 
 [STRUCTURE.md]:https://github.com/saneki/toxscreen/blob/master/STRUCTURE.md

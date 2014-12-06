@@ -15,6 +15,7 @@ Packet Header / Ids
 #define TOXSCREEN_ID_PERMISSIONS 162
 #define TOXSCREEN_ID_EVENT_KEY 170
 #define TOXSCREEN_ID_EVENT_MOUSE 171
+#define TOXSCREEN_ID_EVENT_CLIPBOARD 172
 
 // Packet header present in all toxscreen packets
 struct toxscreen_packet_header {
@@ -63,14 +64,27 @@ certain events.
 ```
 // Signals a keyboard event
 struct event_keyboard_packet {
-  uint32_t key_code;  // Unsure how this will work cross-platform...
+  uint8_t key_flags; // -------X : If set, key down event. Otherwise key up event.
+                     // ------X- : If set, simple key event. (necessary?)
+  uint32_t key_code; // Unsure how this will work cross-platform...
 };
 
 // Signals a mouse click event
+// This may be sent to only indicate updated X/Y position, as
+// certain mouse buttons may be considered "down" (from mouse down),
+// which would be used for drag and drop, etc.
 struct event_mouse_packet {
-  uint8_t button_id;  // Button Id
-  uint32_t x;         // X position
-  uint32_t y;         // Y position
+  uint8_t mouse_flags; // -------X : If set, mouse down event. Otherwise mouse up event.
+                       // ------X- : If set, simple click event. (necessary?)
+  uint8_t button_id;   // Button Id
+  uint32_t x;          // X position
+  uint32_t y;          // Y position
+};
+
+// Signals a clipboard event
+struct event_clipboard_packet {
+  uint64_t size;                 // Amount of data involved in this event
+  uint8_t buffer[SOME_MAX_SIZE]; // Data to send, doesn't need to be a buffer with a max size
 };
 ```
 
@@ -97,6 +111,7 @@ struct permission_info_packet {
                              // ----X--- : File transfer enabled
                              // ---X---- : Chat enabled
                              // --X----- : Screen switch enabled?
-                             // XX------ : Reserved (with the 24 other bits)
+                             // -X------ : Clipboard transfer enabled
+                             // X------- : Reserved (with the 24 other bits)
 };
 ```
