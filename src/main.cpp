@@ -3,6 +3,7 @@
 #include <QByteArray>
 
 #include "core.h"
+#include "packet_handler.h"
 #include "forms/mainwindow.h"
 
 int main(int argc, char *argv[])
@@ -11,9 +12,12 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
+    Core::start();
+    PacketHandler::start();
+
+    Core *core = Core::getInstance();
+
     // Print tox address
-    Core *core = new Core();
-    core->start();
     std::cout << "address: " << core->getAddress().toHex().data() << std::endl;
 
     return a.exec();

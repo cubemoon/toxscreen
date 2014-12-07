@@ -8,25 +8,24 @@
 // Function pointer for packet handler callbacks
 typedef int (*packet_handler_callback)(void *object, const uint8_t *data, uint32_t len);
 
-typedef struct _ToxAddress {
-    uint8_t value[TOX_FRIEND_ADDRESS_SIZE];
-} ToxAddress;
-
 /**
  * Singleton core class that handles the tox instance.
  */
 class Core
 {
-    private:
-        Tox *pTox;
-        void initTox();
+public:
+    QByteArray getAddress();
+    static Core * getInstance();
+    Tox * getTox();
+    bool hasTox();
+    static Core * start();
 
-    public:
-        Core();
-        Tox *getTox();
-        QByteArray getAddress();
-        bool hasTox();
-        void start();
+private:
+    Core();
+    void initTox();
+
+    Tox *pTox;
+    static Core *pInstance;
 };
 
 #endif

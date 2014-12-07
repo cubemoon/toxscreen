@@ -10,11 +10,13 @@ SOURCES += \
     src/main.cpp \
     src/core.cpp \
     src/friend.cpp \
+    src/packet_handler.cpp \
     src/forms/mainwindow.cpp
 
 HEADERS += \
     src/core.h \
     src/friend.h \
+    src/packet_handler.h \
     src/forms/mainwindow.h
 
 FORMS   += \

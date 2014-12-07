@@ -3,18 +3,37 @@
 #include <tox/tox.h>
 
 #include "core.h"
+#include "packet_handler.h"
+
+Core * Core::pInstance{nullptr};
 
 Core::Core()
     : pTox(nullptr)
 {
+    initTox();
+}
+
+Core * Core::getInstance()
+{
+    return Core::pInstance;
 }
 
 /**
- * Start this core instance.
+ * Start the core. This will initialize the singleton instance.
+ * @return singleton instance
  */
-void Core::start()
+Core * Core::start()
 {
-    initTox();
+    if(Core::getInstance() == nullptr)
+    {
+        Core *core = new Core();
+        Core::pInstance = core;
+        return core;
+    }
+    else
+    {
+        return Core::getInstance();
+    }
 }
 
 /**

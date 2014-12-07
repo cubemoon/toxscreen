@@ -38,6 +38,27 @@ functions for sending video data?
 For sending audio data I can't think of any drawbacks for now.
 
 
+Initiating a connection
+-----------------------
+
+Processes that screentox will go through for initiating a connection.
+
+Guest side:
+- Guest client is given some tox address by user, which is to be connected to
+- Given the address, client checks if a friend is added that matches the
+  address. If not, sends a friend request.
+- Once added as a friend (and packet handlers registered), sends a
+  screentox Info request. Wait N seconds (maybe 5 by default?).
+- When a response is received, checks protocol version compatibility.
+  If compatible, sends a screentox Connect request.
+- If the host accepts via a Connect request, consider the session started.
+
+Host side:
+- Host client is sent a Connect request by a friend.
+- If the client has received an Info request recently from the friend, and
+  the protocol versions are compatible, respond to indicate success.
+
+
 Custom packets
 --------------
 
