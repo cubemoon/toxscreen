@@ -10,8 +10,8 @@
  *   connection requests should be ignored, etc.
  */
 
-Friend::Friend(int32_t friendId) :
-    mFriendId(friendId)
+Friend::Friend(int32_t friendId)
+    : mFriendId(friendId)
 {
 }
 
