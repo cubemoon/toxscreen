@@ -3,14 +3,6 @@
 #include "friend.h"
 #include "policy.h"
 
-/**
- * Todo list:
- * - Friend::getPolicy() - Policy class describing
- *   what this friend is allowed to do. This might
- *   include default permission bitfield, whether
- *   connection requests should be ignored, etc.
- */
-
 Friend::Friend(int32_t friendId)
     : mFriendId(friendId)
 {
