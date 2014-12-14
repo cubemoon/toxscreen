@@ -1,10 +1,15 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-TARGET = toxscreen
+TARGET   = toxscreen
 TEMPLATE = app
 CONFIG   += c++11
+QMAKE_CXXFLAGS += -Wno-unused-parameter
 
-LIBS += -ltoxcore -lX11
+LIBS += -ltoxcore
+
+unix {
+    LIBS += -lX11
+}
 
 SOURCES += \
     src/main.cpp \
