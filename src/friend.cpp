@@ -1,6 +1,7 @@
 #include <cstdint>
 
 #include "friend.h"
+#include "policy.h"
 
 /**
  * Todo list:
@@ -13,6 +14,12 @@
 Friend::Friend(int32_t friendId)
     : mFriendId(friendId)
 {
+    pPolicy = new Policy();
+}
+
+Friend::~Friend()
+{
+    delete pPolicy;
 }
 
 /**
@@ -22,4 +29,13 @@ Friend::Friend(int32_t friendId)
 int32_t Friend::getId()
 {
     return this->mFriendId;
+}
+
+/**
+ * Get this friend's policy.
+ * @return policy
+ */
+Policy * Friend::getPolicy()
+{
+    return pPolicy;
 }

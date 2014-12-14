@@ -3,14 +3,18 @@
 
 #include <cstdint>
 
+#include "policy.h"
+
 class Friend
 {
-    private:
-        int32_t mFriendId;
-
-    public:
-        Friend(int32_t friendId);
-        int32_t getId();
+public:
+    Friend(int32_t friendId);
+    ~Friend();
+    int32_t getId();
+    Policy * getPolicy();
+private:
+    int32_t mFriendId;
+    Policy *pPolicy;
 };
 
 #endif
