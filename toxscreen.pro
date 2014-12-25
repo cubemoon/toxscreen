@@ -20,6 +20,7 @@ SOURCES += \
     src/policy.cpp \
     src/remote_action_manager.cpp \
     src/remote_action_manager_x.cpp \
+    src/screen_grabber.cpp \
     src/forms/mainwindow.cpp
 
 HEADERS += \
@@ -30,6 +31,7 @@ HEADERS += \
     src/policy.h \
     src/remote_action_manager.h \
     src/remote_action_manager_x.h \
+    src/screen_grabber.h \
     src/forms/mainwindow.h
 
 FORMS   += \
