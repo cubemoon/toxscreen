@@ -8,8 +8,8 @@
 PacketHandler * PacketHandler::pInstance{nullptr};
 
 // Lazy proxy functions
-int proxy_connect(void *object, const uint8_t *data, uint32_t len);
-int proxy_info(void *object, const uint8_t *data, uint32_t len);
+int proxy_connect(Tox *tox, int32_t friendId, const uint8_t *data, uint32_t len, void *object);
+int proxy_info(Tox *tox, int32_t friendId, const uint8_t *data, uint32_t len, void *object);
 
 PacketHandler::PacketHandler()
 {
@@ -27,9 +27,9 @@ bool PacketHandler::registerFor(int32_t friendId)
     if(tox != nullptr)
     {
         // Register Info
-        tox_lossless_packet_registerhandler(tox, friendId, TOXSCREEN_ID_INFO, proxy_info, (void*)friendId);
+        tox_lossless_packet_registerhandler(tox, friendId, TOXSCREEN_ID_INFO, proxy_info, NULL);
         // Register Connect
-        tox_lossless_packet_registerhandler(tox, friendId, TOXSCREEN_ID_CONNECT, proxy_connect, (void*)friendId);
+        tox_lossless_packet_registerhandler(tox, friendId, TOXSCREEN_ID_CONNECT, proxy_connect, NULL);
         return true;
     }
 
@@ -51,24 +51,24 @@ PacketHandler * PacketHandler::start()
     return PacketHandler::getInstance();
 }
 
-int PacketHandler::handleConnect(void *object, const uint8_t *data, uint32_t len)
+int PacketHandler::handleConnect(Tox *tox, int32_t friendId, const uint8_t *data, uint32_t len, void *object)
 {
     // Todo
     return 0;
 }
 
-int PacketHandler::handleInfo(void *object, const uint8_t *data, uint32_t len)
+int PacketHandler::handleInfo(Tox *tox, int32_t friendId, const uint8_t *data, uint32_t len, void *object)
 {
     // Todo
     return 0;
 }
 
-int proxy_connect(void *object, const uint8_t *data, uint32_t len)
+int proxy_connect(Tox *tox, int32_t friendId, const uint8_t *data, uint32_t len, void *object)
 {
-    return PacketHandler::getInstance()->handleConnect(object, data, len);
+    return PacketHandler::getInstance()->handleConnect(tox, friendId, data, len, object);
 }
 
-int proxy_info(void *object, const uint8_t *data, uint32_t len)
+int proxy_info(Tox *tox, int32_t friendId, const uint8_t *data, uint32_t len, void *object)
 {
-    return PacketHandler::getInstance()->handleInfo(object, data, len);
+    return PacketHandler::getInstance()->handleInfo(tox, friendId, data, len, object);
 }

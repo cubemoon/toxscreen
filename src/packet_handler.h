@@ -10,8 +10,8 @@ class PacketHandler
 {
 public:
     static PacketHandler * getInstance(); // Singleton instance
-    int handleConnect(void *object, const uint8_t *data, uint32_t len);
-    int handleInfo(void *object, const uint8_t *data, uint32_t len);
+    int handleConnect(Tox *tox, int32_t friendId, const uint8_t *data, uint32_t len, void *object);
+    int handleInfo(Tox *tox, int32_t friendId, const uint8_t *data, uint32_t len, void *object);
     bool registerFor(int32_t friendId);
     static PacketHandler * start();
 
