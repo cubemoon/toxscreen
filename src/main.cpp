@@ -3,6 +3,7 @@
 #include <QByteArray>
 #include <QGuiApplication>
 #include <QPixmap>
+#include <QtGlobal>
 
 #include "core.h"
 #include "packet_handler.h"
@@ -26,6 +27,7 @@ int main(int argc, char *argv[])
     // Print tox address
     std::cout << "address: " << core->getAddress().toHex().data() << std::endl;
 
+    qDebug("Writing screenshot");
     ScreenGrabber grabber(guiApp.primaryScreen());
     QPixmap ss = grabber.grabPixmap();
     ss.save(QString("screenshot.png"), "PNG");
