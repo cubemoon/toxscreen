@@ -1,9 +1,9 @@
-#ifndef CORE_H
-#define CORE_H
+#ifndef TOXSCREEN_CORE_H
+#define TOXSCREEN_CORE_H
 
 #include <cstdint>
 #include <QByteArray>
-#include <tox/tox.h>
+#include "tox/toxcore.h"
 
 // Function pointer for packet handler callbacks
 typedef int (*packet_handler_callback)(void *object, const uint8_t *data, uint32_t len);
@@ -14,17 +14,14 @@ typedef int (*packet_handler_callback)(void *object, const uint8_t *data, uint32
 class Core
 {
 public:
-    QByteArray getAddress();
+    QByteArray getAddress() const;
     static Core * getInstance();
-    Tox * getTox();
-    bool hasTox();
+    Tox * getTox() const;
+    bool hasTox() const;
     static Core * start();
-
 private:
     Core();
-    void initTox();
-
-    Tox *pTox;
+    ToxCore mTox;
     static Core *pInstance;
 };
 

@@ -21,6 +21,8 @@ SOURCES += \
     src/remote_action_manager.cpp \
     src/remote_action_manager_x.cpp \
     src/screen_grabber.cpp \
+    src/tox/exception.cpp \
+    src/tox/toxcore.cpp \
     src/forms/mainwindow.cpp
 
 HEADERS += \
@@ -32,6 +34,8 @@ HEADERS += \
     src/remote_action_manager.h \
     src/remote_action_manager_x.h \
     src/screen_grabber.h \
+    src/tox/exception.h \
+    src/tox/toxcore.h \
     src/forms/mainwindow.h
 
 FORMS   += \

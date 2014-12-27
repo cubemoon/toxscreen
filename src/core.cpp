@@ -1,6 +1,6 @@
 #include <cstdint>
 #include <QByteArray>
-#include <tox/tox.h>
+#include "tox/toxcore.h"
 
 #include "core.h"
 #include "packet_handler.h"
@@ -8,11 +8,14 @@
 Core * Core::pInstance{nullptr};
 
 Core::Core()
-    : pTox(nullptr)
+    : mTox(ToxCore())
 {
-    initTox();
 }
 
+/**
+ * Get a pointer to the singleton Core instance.
+ * @return Pointer to singleton Core instance
+ */
 Core * Core::getInstance()
 {
     return Core::pInstance;
@@ -37,30 +40,21 @@ Core * Core::start()
 }
 
 /**
- * Initialize the tox instance.
- */
-void Core::initTox()
-{
-    pTox = tox_new(nullptr);
-    // Todo: Load from file
-}
-
-/**
  * Get the Tox pointer.
  * @return pointer to Tox instance
  */
-Tox *Core::getTox()
+Tox * Core::getTox() const
 {
-    return pTox;
+    return mTox.getHandle();
 }
 
 /**
  * Whether or not we have a tox instance.
  * @return true if tox instance, false if nullptr
  */
-bool Core::hasTox()
+bool Core::hasTox() const
 {
-    return pTox != nullptr;
+    return mTox.hasHandle();
 }
 
 /**
@@ -68,16 +62,8 @@ bool Core::hasTox()
  * @return QByteArray containing address, or QByteArray filled with 0s
  *         if no tox
  */
-QByteArray Core::getAddress()
+QByteArray Core::getAddress() const
 {
-    if(hasTox())
-    {
-        uint8_t buffer[TOX_FRIEND_ADDRESS_SIZE];
-        tox_get_address(pTox, buffer);
-        return QByteArray((const char *)buffer, TOX_FRIEND_ADDRESS_SIZE);
-    }
-    else
-    {
-        return QByteArray(TOX_FRIEND_ADDRESS_SIZE, 0);
-    }
+    std::vector<uint8_t> address = mTox.getAddress();
+    return QByteArray((char *)address.data(), address.size());
 }
