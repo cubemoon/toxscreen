@@ -58,12 +58,31 @@ bool Core::hasTox() const
 }
 
 /**
- * Get our tox address. Will do nothing if no tox instance.
- * @return QByteArray containing address, or QByteArray filled with 0s
- *         if no tox
+ * Get our address.
+ * @return QByteArray with address
  */
 QByteArray Core::getAddress() const
 {
     std::vector<uint8_t> address = mTox.getAddress();
     return QByteArray((char *)address.data(), address.size());
+}
+
+/**
+ * Get our public key.
+ * @return QByteArray with public key
+ */
+QByteArray Core::getPublicKey() const
+{
+    std::vector<uint8_t> key = mTox.getKeys(false).first;
+    return QByteArray((char *)key.data(), key.size());
+}
+
+/**
+ * Get our private key.
+ * @return QByteArray with private key
+ */
+QByteArray Core::getPrivateKey() const
+{
+    std::vector<uint8_t> key = mTox.getKeys(true).second;
+    return QByteArray((char *)key.data(), key.size());
 }

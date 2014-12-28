@@ -26,6 +26,8 @@ int main(int argc, char *argv[])
 
     // Print tox address
     std::cout << "address: " << core->getAddress().toHex().data() << std::endl;
+    std::cout << "public key: " << core->getPublicKey().toHex().data() << std::endl;
+    std::cout << "private key: " << core->getPrivateKey().toHex().data() << std::endl;
 
     qDebug("Writing screenshot");
     ScreenGrabber grabber(guiApp.primaryScreen());

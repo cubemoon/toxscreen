@@ -16,6 +16,8 @@ class Core
 public:
     QByteArray getAddress() const;
     static Core * getInstance();
+    QByteArray getPrivateKey() const;
+    QByteArray getPublicKey() const;
     Tox * getTox() const;
     bool hasTox() const;
     static Core * start();
