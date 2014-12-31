@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui testlib
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET   = toxscreen
 TEMPLATE = app
@@ -21,6 +21,7 @@ SOURCES += \
     src/remote_action_manager.cpp \
     src/remote_action_manager_x.cpp \
     src/screen_grabber.cpp \
+    src/packet/packet.cpp \
     src/tox/exception.cpp \
     src/tox/toxcore.cpp \
     src/forms/mainwindow.cpp
@@ -34,6 +35,7 @@ HEADERS += \
     src/remote_action_manager.h \
     src/remote_action_manager_x.h \
     src/screen_grabber.h \
+    src/packet/packet.h \
     src/tox/exception.h \
     src/tox/toxcore.h \
     src/forms/mainwindow.h

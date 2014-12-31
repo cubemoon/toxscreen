@@ -6,3 +6,4 @@ Makefile
 # Output
 *.o
 toxscreen
+tests/toxscreen-tests
