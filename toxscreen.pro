@@ -16,12 +16,13 @@ SOURCES += \
     src/core.cpp \
     src/friend.cpp \
     src/host_session.cpp \
-    src/packet_handler.cpp \
     src/policy.cpp \
     src/remote_action_manager.cpp \
     src/remote_action_manager_x.cpp \
     src/screen_grabber.cpp \
     src/packet/packet.cpp \
+    src/qt/QTox.cpp \
+    src/qt/QToxFriend.cpp \
     src/tox/exception.cpp \
     src/tox/toxcore.cpp \
     src/forms/mainwindow.cpp
@@ -30,12 +31,13 @@ HEADERS += \
     src/core.h \
     src/friend.h \
     src/host_session.h \
-    src/packet_handler.h \
     src/policy.h \
     src/remote_action_manager.h \
     src/remote_action_manager_x.h \
     src/screen_grabber.h \
     src/packet/packet.h \
+    src/qt/QTox.h \
+    src/qt/QToxFriend.h \
     src/tox/exception.h \
     src/tox/toxcore.h \
     src/forms/mainwindow.h

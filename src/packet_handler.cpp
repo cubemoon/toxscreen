@@ -22,7 +22,7 @@ PacketHandler::PacketHandler()
  */
 bool PacketHandler::registerFor(int32_t friendId)
 {
-    Tox *tox = Core::getInstance()->getTox();
+    QTox *tox = Core::getInstance()->getTox();
 
     if(tox != nullptr)
     {

@@ -3,10 +3,7 @@
 
 #include <cstdint>
 #include <QByteArray>
-#include "tox/toxcore.h"
-
-// Function pointer for packet handler callbacks
-typedef int (*packet_handler_callback)(void *object, const uint8_t *data, uint32_t len);
+#include "qt/QTox.h"
 
 /**
  * Singleton core class that handles the tox instance.
@@ -14,16 +11,12 @@ typedef int (*packet_handler_callback)(void *object, const uint8_t *data, uint32
 class Core
 {
 public:
-    QByteArray getAddress() const;
     static Core * getInstance();
-    QByteArray getPrivateKey() const;
-    QByteArray getPublicKey() const;
-    Tox * getTox() const;
-    bool hasTox() const;
     static Core * start();
+    QTox * getTox();
 private:
     Core();
-    ToxCore mTox;
+    QTox mTox;
     static Core *pInstance;
 };
 

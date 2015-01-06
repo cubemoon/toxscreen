@@ -27,13 +27,14 @@ public:
     explicit Packet(const QByteArray &bytes);
     ~Packet();
     QByteArray getBytes() const;
+    bool isEmpty() const;
     int length() const;
     int size() const;
 private:
     QByteArray mBytes;
     QBuffer mBuffer;
     QDataStream mStream;
-    int mLength;
+    uint8_t mType;
 };
 
 #endif // TOXSCREEN_PACKET_PACKET_H

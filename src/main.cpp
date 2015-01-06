@@ -20,14 +20,14 @@ int main(int argc, char *argv[])
     w.show();
 
     Core::start();
-    PacketHandler::start();
+    //PacketHandler::start();
 
     Core *core = Core::getInstance();
 
     // Print tox address
-    std::cout << "address: " << core->getAddress().toHex().data() << std::endl;
-    std::cout << "public key: " << core->getPublicKey().toHex().data() << std::endl;
-    std::cout << "private key: " << core->getPrivateKey().toHex().data() << std::endl;
+    std::cout << "address: " << core->getTox()->getAddress().toHex().data() << std::endl;
+    std::cout << "public key: " << core->getTox()->getPublicKey().toHex().data() << std::endl;
+    std::cout << "private key: " << core->getTox()->getPrivateKey().toHex().data() << std::endl;
 
     qDebug("Writing screenshot");
     ScreenGrabber grabber(guiApp.primaryScreen());

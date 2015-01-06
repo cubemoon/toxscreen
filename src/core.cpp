@@ -8,7 +8,6 @@
 Core * Core::pInstance{nullptr};
 
 Core::Core()
-    : mTox(ToxCore())
 {
 }
 
@@ -39,50 +38,7 @@ Core * Core::start()
     }
 }
 
-/**
- * Get the Tox pointer.
- * @return pointer to Tox instance
- */
-Tox * Core::getTox() const
+QTox * Core::getTox()
 {
-    return mTox.getHandle();
-}
-
-/**
- * Whether or not we have a tox instance.
- * @return true if tox instance, false if nullptr
- */
-bool Core::hasTox() const
-{
-    return mTox.hasHandle();
-}
-
-/**
- * Get our address.
- * @return QByteArray with address
- */
-QByteArray Core::getAddress() const
-{
-    std::vector<uint8_t> address = mTox.getAddress();
-    return QByteArray((char *)address.data(), address.size());
-}
-
-/**
- * Get our public key.
- * @return QByteArray with public key
- */
-QByteArray Core::getPublicKey() const
-{
-    std::vector<uint8_t> key = mTox.getKeys(false).first;
-    return QByteArray((char *)key.data(), key.size());
-}
-
-/**
- * Get our private key.
- * @return QByteArray with private key
- */
-QByteArray Core::getPrivateKey() const
-{
-    std::vector<uint8_t> key = mTox.getKeys(true).second;
-    return QByteArray((char *)key.data(), key.size());
+    return &mTox;
 }

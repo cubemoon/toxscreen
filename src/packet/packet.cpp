@@ -1,8 +1,10 @@
 #include "packet.h"
 
 Packet::Packet(PacketType type)
-    : Packet(QByteArray())
+    : mBytes(QByteArray()), mBuffer(&mBytes), mStream(&mBuffer), mType(type)
 {
+    mBuffer.open(QBuffer::WriteOnly);
+
     // Write the type as first byte
     mStream << ((quint8)type);
 }
@@ -15,7 +17,14 @@ Packet::Packet(const uint8_t *data, size_t length)
 Packet::Packet(const QByteArray &bytes)
     : mBytes(bytes), mBuffer(&mBytes), mStream(&mBuffer)
 {
-    mBuffer.open(QBuffer::ReadWrite);
+    mBuffer.open(QBuffer::ReadOnly);
+
+    if(!isEmpty())
+    {
+        mStream >> mType;
+    }
+
+    // Todo: Throw exception?
 }
 
 Packet::~Packet()
@@ -26,6 +35,15 @@ Packet::~Packet()
 QByteArray Packet::getBytes() const
 {
     return mBytes;
+}
+
+/**
+ * Whether or not this Packet is empty.
+ * @return true if empty, false if not
+ */
+bool Packet::isEmpty() const
+{
+    return length() == 0;
 }
 
 /**
