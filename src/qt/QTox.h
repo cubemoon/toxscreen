@@ -28,8 +28,14 @@ public:
     QByteArray getPrivateKey() const;
     QByteArray getPublicKey() const;
     bool hasHandle() const;
+    void load(const QByteArray &data);
+    void loadFromFile(const QString &filepath);
+    //void loadFromFile(const QString &filepath, const QString &password);
     void registerLossless(int32_t friendNumber, uint8_t byte) const;
     void registerLossy(int32_t friendNumber, uint8_t byte) const;
+    //QByteArray save() const;
+    //void saveToFile(const QString &filepath) const;
+    //void saveToFile(const QString &filepath, const QString &password) const;
 public slots:
     void handleLosslessPacket(int32_t friendNumber, const uint8_t *data, uint32_t length);
     void handleLossyPacket(int32_t friendNumber, const uint8_t *data, uint32_t length);

@@ -22,6 +22,9 @@ SOURCES += \
     src/screen_grabber.cpp \
     src/packet/packet.cpp \
     src/qt/QTox.cpp \
+    src/qt/QToxException.cpp \
+    src/qt/QToxFileEncryptedException.cpp \
+    src/qt/QToxReturnException.cpp \
     src/qt/QToxFriend.cpp \
     src/tox/exception.cpp \
     src/tox/toxcore.cpp \
@@ -37,6 +40,9 @@ HEADERS += \
     src/screen_grabber.h \
     src/packet/packet.h \
     src/qt/QTox.h \
+    src/qt/QToxException.h \
+    src/qt/QToxFileEncryptedException.h \
+    src/qt/QToxReturnException.h \
     src/qt/QToxFriend.h \
     src/tox/exception.h \
     src/tox/toxcore.h \

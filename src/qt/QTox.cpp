@@ -1,5 +1,9 @@
 #include <vector>
+#include <QFile>
+#include <QIODevice>
 #include "QTox.h"
+#include "QToxFileEncryptedException.h"
+#include "QToxReturnException.h"
 
 void proxy_tox_friend_request(Tox *tox, const uint8_t *publicKey, const uint8_t *data, uint16_t length, void *object);
 int proxy_tox_lossless_packet(Tox *tox, int32_t friendNumber, const uint8_t *data, uint32_t length, void *object);
@@ -169,6 +173,50 @@ QByteArray QTox::getPublicKey() const
 bool QTox::hasHandle() const
 {
     return pTox != nullptr;
+}
+
+/**
+ * Load from some data, usually read from a tox file.
+ * @param data Data to load from
+ * @throws QToxFileEncryptedException if data appears encrypted
+ * @throws QToxReturnException if tox library function return value
+ *         is unexpected
+ */
+void QTox::load(const QByteArray &data)
+{
+    if(hasHandle())
+    {
+        int result = tox_load(getHandle(), (uint8_t*)data.data(), data.size());
+
+        if(result == -1)
+        {
+            QToxReturnException ex(this, QString("tox_load"), result);
+            ex.raise();
+        }
+        else if(result == 1)
+        {
+            QToxFileEncryptedException ex(this);
+            ex.raise();
+        }
+    }
+}
+
+/**
+ * Load from a tox file.
+ * @param filepath Path to tox file
+ * @todo Throw exceptions and stuff
+ */
+void QTox::loadFromFile(const QString &filepath)
+{
+    if(hasHandle())
+    {
+        QFile file(filepath);
+        if(!file.open(QIODevice::ReadOnly))
+        {
+            QByteArray bytes = file.readAll();
+            load(bytes);
+        }
+    }
 }
 
 /**
