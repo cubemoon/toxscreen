@@ -7,3 +7,4 @@ Makefile
 *.o
 toxscreen
 tests/toxscreen-tests
+benchmarks/toxscreen-benchmarks
