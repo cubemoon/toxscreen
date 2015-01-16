@@ -24,6 +24,8 @@ int main(int argc, char *argv[])
 
     Core *core = Core::getInstance();
 
+    w.setTox(core->getTox());
+
     // Print tox address
     std::cout << "address: " << core->getTox()->getAddress().toHex().data() << std::endl;
     std::cout << "public key: " << core->getTox()->getPublicKey().toHex().data() << std::endl;

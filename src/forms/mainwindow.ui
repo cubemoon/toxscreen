@@ -263,9 +263,11 @@ padding:5px;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">border-radius:0px;
-border:solid 2px #000000;
-background-color: rgb(255, 255, 255);</string>
+               <string notr="true">background-color: rgb(255, 255, 255);
+color:#6bc25f;
+border-radius:0px;
+font-size:18px;
+padding:0px 4px;</string>
               </property>
               <property name="readOnly">
                <bool>true</bool>
@@ -275,7 +277,6 @@ background-color: rgb(255, 255, 255);</string>
            </layout>
           </item>
          </layout>
-         <zorder>toxIdLineEdit</zorder>
         </widget>
        </item>
        <item>
