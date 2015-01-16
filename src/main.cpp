@@ -12,8 +12,6 @@
 
 int main(int argc, char *argv[])
 {
-    // The order of these two matters, guiApp needed for QScreen
-    QGuiApplication guiApp(argc, argv);
     QApplication app(argc, argv);
 
     MainWindow w;
@@ -32,9 +30,12 @@ int main(int argc, char *argv[])
     std::cout << "private key: " << core->getTox()->getPrivateKey().toHex().data() << std::endl;
 
     qDebug("Writing screenshot");
-    ScreenGrabber grabber(guiApp.primaryScreen());
+    ScreenGrabber grabber(QGuiApplication::primaryScreen());
     QPixmap ss = grabber.grabPixmap();
     ss.save(QString("screenshot.png"), "PNG");
 
-    return app.exec();
+    int result = app.exec();
+
+    delete core;
+    return result;
 }
