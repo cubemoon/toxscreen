@@ -23,7 +23,10 @@
    <enum>Qt::LeftToRight</enum>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">QWidget#greenMenuWidget QPushButton::menu-indicator {
+  width:0px;
+  height:0px;
+}</string>
   </property>
   <property name="documentMode">
    <bool>false</bool>
