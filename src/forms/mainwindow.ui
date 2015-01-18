@@ -39,6 +39,57 @@ QWidget#greenMenuWidget QPushButton {
 
 QPushButton:hover {
   background-color:#47a239;
+}
+
+QWidget#toxIdWidget, QWidget#passwordWidget {
+  background-color:#6bc25f;
+}
+
+QLabel#toxIdLabel, QLabel#passwordLabel {
+  background-color:#6bc25f;
+  color:#ffffff;
+  font-size:15px;
+  padding:5px;
+}
+
+QLineEdit#toxIdLineEdit, QLineEdit#passwordLineEdit {
+  background-color:#ffffff;
+  color:#6bc25f;
+  border-radius:0px;
+  font-size:14px;
+  padding:0px 4px;
+}
+
+QLineEdit#toxIdLineEdit {
+  /* Placeholder uses 50% alpha, so use #2d9423 twice as dark */
+  color:#085605;
+}
+
+/** Password refresh button **/
+QWidget#passwordButtonWidget {
+  background-color:#ffffff;
+}
+QPushButton#passwordRefreshPushButton {
+  color:#6bc25f;
+  background-color:#ffffff;
+  border:none;
+  font-size:22px;
+}
+QPushButton#passwordRefreshPushButton:hover {
+  color:#99de90;
+}
+
+/** Tox Id copy button **/
+QWidget#toxIdCopyWidget {
+  background-color:#ffffff;
+}
+QPushButton#toxIdCopyPushButton {
+  background-color:#6bc25f;
+  color:#ffffff;
+  border-radius:4px;
+}
+QPushButton#toxIdCopyPushButton:hover {
+  background-color:#99de90;
 }</string>
   </property>
   <property name="documentMode">
@@ -197,7 +248,7 @@ QPushButton:hover {
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(107, 194, 95);</string>
+          <string notr="true"/>
          </property>
          <layout class="QVBoxLayout" name="toxIdBlehLayout">
           <property name="spacing">
@@ -252,10 +303,7 @@ QPushButton:hover {
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:#6bc25f;
-color: rgb(255, 255, 255);
-font-size:15px;
-padding:5px;</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Tox ID</string>
@@ -280,15 +328,60 @@ padding:5px;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 255, 255);
-color:#6bc25f;
-border-radius:0px;
-font-size:14px;
-padding:0px 4px;</string>
+               <string notr="true"/>
               </property>
               <property name="readOnly">
                <bool>true</bool>
               </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QWidget" name="toxIdCopyWidget" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>60</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>60</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <layout class="QVBoxLayout" name="toxIdCopyWidgetLayout">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>3</number>
+               </property>
+               <property name="topMargin">
+                <number>3</number>
+               </property>
+               <property name="rightMargin">
+                <number>3</number>
+               </property>
+               <property name="bottomMargin">
+                <number>3</number>
+               </property>
+               <item>
+                <widget class="QPushButton" name="toxIdCopyPushButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Copy</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
            </layout>
@@ -311,7 +404,7 @@ padding:0px 4px;</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(107, 194, 95);</string>
+          <string notr="true"/>
          </property>
          <layout class="QVBoxLayout" name="toxIdBlehLayout_2">
           <property name="spacing">
@@ -366,10 +459,7 @@ padding:0px 4px;</string>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:#6bc25f;
-color: rgb(255, 255, 255);
-font-size:15px;
-padding:5px;</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Password</string>
@@ -391,11 +481,7 @@ padding:5px;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 255, 255);
-color:#6bc25f;
-border-radius:0px;
-font-size:14px;
-padding:0px 4px;</string>
+               <string notr="true"/>
               </property>
               <property name="inputMask">
                <string/>
@@ -423,7 +509,7 @@ padding:0px 4px;</string>
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:#ffffff;</string>
+               <string notr="true"/>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_3">
                <property name="leftMargin">
@@ -439,7 +525,7 @@ padding:0px 4px;</string>
                 <number>3</number>
                </property>
                <item>
-                <widget class="QPushButton" name="pushButton">
+                <widget class="QPushButton" name="passwordRefreshPushButton">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                    <horstretch>0</horstretch>
@@ -447,10 +533,7 @@ padding:0px 4px;</string>
                   </sizepolicy>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">color:#6bc25f;
-background-color:#ffffff;
-border:none;
-font-size:22px;</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>⟳</string>

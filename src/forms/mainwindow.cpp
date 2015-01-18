@@ -37,7 +37,7 @@ void MainWindow::setTox(QTox *tox)
 
     // Set address text field
     QString addressHex(pTox->getAddress().toHex().toUpper());
-    ui->toxIdLineEdit->setText(addressHex);
+    ui->toxIdLineEdit->setPlaceholderText(addressHex);
     ui->toxIdLineEdit->setCursorPosition(0);
 }
 
