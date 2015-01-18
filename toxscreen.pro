@@ -16,6 +16,7 @@ SOURCES += \
     src/core.cpp \
     src/friend.cpp \
     src/host_session.cpp \
+    src/password_generator.cpp \
     src/policy.cpp \
     src/remote_action_manager.cpp \
     src/remote_action_manager_x.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     src/core.h \
     src/friend.h \
     src/host_session.h \
+    src/password_generator.h \
     src/policy.h \
     src/remote_action_manager.h \
     src/remote_action_manager_x.h \

@@ -1,3 +1,4 @@
+#include <QClipboard>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -9,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    initButtons();
     initMenus();
 }
 
@@ -31,6 +33,12 @@ void MainWindow::initMenus()
     ui->toxScreenMenuPushButton->setMenu(pPrimaryMenu);
 }
 
+void MainWindow::initButtons()
+{
+    QObject::connect(ui->passwordRefreshPushButton, &QPushButton::clicked, this, &MainWindow::onPasswordRefreshButtonClicked);
+    QObject::connect(ui->toxIdCopyPushButton, &QPushButton::clicked, this, &MainWindow::onToxIdCopyButtonClicked);
+}
+
 void MainWindow::setTox(QTox *tox)
 {
     pTox = tox;
@@ -48,5 +56,17 @@ void MainWindow::onConnectAction(bool checked)
 
 void MainWindow::onExitAction(bool checked)
 {
-	close();
+    close();
+}
+
+void MainWindow::onPasswordRefreshButtonClicked(bool checked)
+{
+    QString newPass = mPasswordGenerator.generate();
+    ui->passwordLineEdit->setText(newPass);
+}
+
+void MainWindow::onToxIdCopyButtonClicked(bool checked)
+{
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(pTox->getAddress().toHex().toUpper());
 }
