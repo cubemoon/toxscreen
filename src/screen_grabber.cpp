@@ -6,9 +6,28 @@
 
 #include "screen_grabber.h"
 
-ScreenGrabber::ScreenGrabber(QScreen *screen)
-    : pScreen(screen)
+ScreenGrabber::ScreenGrabber()
+    : ScreenGrabber(QGuiApplication::primaryScreen())
 {
+}
+
+ScreenGrabber::ScreenGrabber(QScreen *screen)
+    : pScreen(screen),
+      mFramesPerSecond(30)
+{
+}
+
+void ScreenGrabber::handleImageUpdate()
+{
+    QImage image = grabImage();
+    emit onImageUpdate(image);
+}
+
+void ScreenGrabber::handleVpxImageUpdate()
+{
+    vpx_image_t image;
+    grabVpxImage(&image);
+    emit onVpxImageUpdate(image);
 }
 
 /**
@@ -18,6 +37,15 @@ ScreenGrabber::ScreenGrabber(QScreen *screen)
 bool ScreenGrabber::hasScreen() const
 {
     return pScreen != nullptr;
+}
+
+/**
+ * Get the number of milliseconds per interval, or how long to
+ * wait before grabbing a new image and emitting a signal.
+ */
+uint ScreenGrabber::getInterval() const
+{
+    return (1000 / mFramesPerSecond);
 }
 
 /**
@@ -37,35 +65,71 @@ QPixmap ScreenGrabber::grabPixmap() const
 }
 
 /**
+ * Grab a QImage of the screen.
+ * @return Image of the screen. May be null if no screen.
+ */
+QImage ScreenGrabber::grabImage() const
+{
+    if(hasScreen())
+    {
+        return grabPixmap().toImage().convertToFormat(QImage::Format_RGB888);
+    }
+    else
+    {
+        return QImage();
+    }
+}
+
+/**
  * Grab a vpx_image_t of the screen.
  * @param image Pointer to vpx_image_t struct to save the image in
  */
 void ScreenGrabber::grabVpxImage(vpx_image_t *image) const
 {
-    ScreenGrabber::toVpxImage(grabPixmap(), image);
+    ScreenGrabber::toVpxImage(grabImage(), image);
 }
 
 /**
- * Set a vpx_image_t from a QPixmap.
- * @param pixmap QPixmap to set from
- * @param image vpx_image_t to set
+ * Whether or not the timer is running/started.
+ * @return true if timer is running, false if not
  */
-void ScreenGrabber::toVpxImage(const QPixmap &pixmap, vpx_image_t *image)
+bool ScreenGrabber::isActive() const
 {
-    if(pixmap.isNull())
-    {
-        qDebug("Cannot set vpx_image_t to null pixmap");
-        return;
-    }
-    else if(image == nullptr)
-    {
-        qDebug("vpx_image_t == nullptr");
-        return;
-    }
+    return mTimer.isActive();
+}
 
-    // Get a RGB24 image from the pixmap
-    QImage img = pixmap.toImage().convertToFormat(QImage::Format_RGB888);
-    toVpxImage(img, image);
+void ScreenGrabber::setFPS(uint framesPerSecond)
+{
+    // Limit to 60 for now
+    if(framesPerSecond > 60) framesPerSecond = 60;
+    mFramesPerSecond = framesPerSecond;
+}
+
+/**
+ * Start the timer.
+ */
+void ScreenGrabber::start()
+{
+    mTimer.setInterval(getInterval());
+    mTimer.start();
+}
+
+/**
+ * Stop the timer.
+ */
+void ScreenGrabber::stop()
+{
+    mTimer.stop();
+}
+
+/**
+ * Initialize timer connections.
+ * @todo Only handle one or the other, depending on flags passed to constructor?
+ */
+void ScreenGrabber::initTimer()
+{
+    QObject::connect(&mTimer, &QTimer::timeout, this, &ScreenGrabber::handleImageUpdate);
+    QObject::connect(&mTimer, &QTimer::timeout, this, &ScreenGrabber::handleVpxImageUpdate);
 }
 
 /**
