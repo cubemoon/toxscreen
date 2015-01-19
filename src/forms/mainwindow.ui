@@ -90,6 +90,11 @@ QPushButton#toxIdCopyPushButton {
 }
 QPushButton#toxIdCopyPushButton:hover {
   background-color:#99de90;
+}
+
+/** Status label, created in src/forms/mainwindow.cpp as QtCreator doesn't allow for QStatusBar children **/
+QLabel#statusLabel {
+  color:#6bc25f;
 }</string>
   </property>
   <property name="documentMode">
@@ -594,7 +599,11 @@ QPushButton#toxIdCopyPushButton:hover {
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="sizeGripEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
