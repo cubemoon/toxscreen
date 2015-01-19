@@ -30,7 +30,7 @@ SOURCES += \
     src/tox/exception.cpp \
     src/tox/toxcore.cpp \
     src/forms/connect_dialog.cpp \
-    src/forms/mainwindow.cpp
+    src/forms/main_window.cpp
 
 HEADERS += \
     src/core.h \
@@ -50,8 +50,8 @@ HEADERS += \
     src/tox/exception.h \
     src/tox/toxcore.h \
     src/forms/connect_dialog.h \
-    src/forms/mainwindow.h
+    src/forms/main_window.h
 
 FORMS   += \
     src/forms/connect_dialog.ui \
-    src/forms/mainwindow.ui
+    src/forms/main_window.ui

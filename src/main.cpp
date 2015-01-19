@@ -8,7 +8,7 @@
 #include "core.h"
 #include "packet_handler.h"
 #include "screen_grabber.h"
-#include "forms/mainwindow.h"
+#include "forms/main_window.h"
 
 int main(int argc, char *argv[])
 {

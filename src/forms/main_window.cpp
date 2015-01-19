@@ -1,6 +1,6 @@
 #include <QClipboard>
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "main_window.h"
+#include "ui_main_window.h"
 
 // Wait 3 seconds before clearing status
 int MainWindow::clearStatusMilli = 3000;

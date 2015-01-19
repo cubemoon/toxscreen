@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef TOXSCREEN_FORMS_MAIN_WINDOW_H
+#define TOXSCREEN_FORMS_MAIN_WINDOW_H
 
 #include <QLabel>
 #include <QMainWindow>
@@ -45,4 +45,4 @@ private:
     static int clearStatusMilli;
 };
 
-#endif // MAINWINDOW_H
+#endif // TOXSCREEN_FORMS_MAIN_WINDOW_H
