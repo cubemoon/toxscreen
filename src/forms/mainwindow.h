@@ -6,6 +6,7 @@
 #include <QMenu>
 #include <QString>
 #include <QTimer>
+#include "connect_dialog.h"
 #include "../qt/QTox.h"
 #include "../password_generator.h"
 
@@ -33,10 +34,11 @@ private:
     void onExitAction(bool checked);
     void onPasswordRefreshButtonClicked(bool checked);
     void onToxIdCopyButtonClicked(bool checked);
-    Ui::MainWindow *ui;
-    QTimer *pStatusClearTimer;
+    ConnectDialog mConnectDialog;
     PasswordGenerator mPasswordGenerator;
+    Ui::MainWindow *ui;
     QTox *pTox;
+    QTimer *pStatusClearTimer;
     QMenu *pPrimaryMenu;
     QLabel *pStatusLabel;
 

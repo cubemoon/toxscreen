@@ -29,6 +29,7 @@ SOURCES += \
     src/qt/QToxFriend.cpp \
     src/tox/exception.cpp \
     src/tox/toxcore.cpp \
+    src/forms/connect_dialog.cpp \
     src/forms/mainwindow.cpp
 
 HEADERS += \
@@ -48,7 +49,9 @@ HEADERS += \
     src/qt/QToxFriend.h \
     src/tox/exception.h \
     src/tox/toxcore.h \
+    src/forms/connect_dialog.h \
     src/forms/mainwindow.h
 
 FORMS   += \
+    src/forms/connect_dialog.ui \
     src/forms/mainwindow.ui

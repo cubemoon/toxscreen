@@ -37,7 +37,7 @@ QWidget#greenMenuWidget QPushButton {
   border-radius:0px;
 }
 
-QPushButton:hover {
+QWidget#greenMenuWidget QPushButton:hover {
   background-color:#47a239;
 }
 

@@ -7,8 +7,12 @@ int MainWindow::clearStatusMilli = 3000;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
+    mConnectDialog(this),
     ui(new Ui::MainWindow),
-    pStatusClearTimer(new QTimer(this))
+    pTox(nullptr),
+    pStatusClearTimer(new QTimer(this)),
+    pPrimaryMenu(nullptr),
+    pStatusLabel(nullptr)
 {
     ui->setupUi(this);
 
@@ -111,6 +115,9 @@ void MainWindow::setTox(QTox *tox)
 void MainWindow::onConnectAction(bool checked)
 {
     qDebug("Connect action triggered");
+    mConnectDialog.show();
+    mConnectDialog.raise();
+    mConnectDialog.activateWindow();
 }
 
 /**
