@@ -6,8 +6,8 @@
 #include <QMenu>
 #include <QString>
 #include <QTimer>
+#include <QTox.h>
 #include "connect_dialog.h"
-#include "../qt/QTox.h"
 #include "../password_generator.h"
 
 namespace Ui {

@@ -25,9 +25,9 @@ int main(int argc, char *argv[])
     w.setTox(core->getTox());
 
     // Print tox address
-    std::cout << "address: " << core->getTox()->getAddress().toHex().data() << std::endl;
-    std::cout << "public key: " << core->getTox()->getPublicKey().toHex().data() << std::endl;
-    std::cout << "private key: " << core->getTox()->getPrivateKey().toHex().data() << std::endl;
+    std::cout << "address: " << core->getTox()->getAddressHex().toStdString() << std::endl;
+    std::cout << "public key: " << core->getTox()->getPublicKeyHex().toStdString() << std::endl;
+    std::cout << "secret key: " << core->getTox()->getSecretKeyHex().toStdString() << std::endl;
 
     qDebug("Writing screenshot");
     ScreenGrabber grabber(QGuiApplication::primaryScreen());

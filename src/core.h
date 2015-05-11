@@ -3,7 +3,7 @@
 
 #include <cstdint>
 #include <QByteArray>
-#include "qt/QTox.h"
+#include <QTox.h>
 
 /**
  * Singleton core class that handles the tox instance.

@@ -1,9 +1,7 @@
 #include <cstdint>
 #include <QByteArray>
-#include "tox/toxcore.h"
 
 #include "core.h"
-#include "packet_handler.h"
 
 Core * Core::pInstance{nullptr};
 
